@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent switchLevel = new UnityEvent();
 
     public int score = 0;
+    public int CurrentRoom = 0;
     private void Awake()
     {
         if (instance == null)

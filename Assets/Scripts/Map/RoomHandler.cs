@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class RoomHandler : MonoBehaviour
 {
     [SerializeField] bool SpawnRoomOnStart = false;
     private GameManager _gameManager;
-    [SerializeField] GameObject[] _rooms;
+    [SerializeField] List<GameObject> _rooms;
     GameObject _currentRoom;
     RealDoorObject _refDoor;
     [SerializeField] Transform _RoomOrigin;
@@ -30,16 +31,24 @@ public class RoomHandler : MonoBehaviour
 
     void SwitchRooms()
     {
-        RefPlayer.SetActive(false);
-        // unload room
-        if (_currentRoom) {
-            Object.Destroy(_currentRoom);
-            _currentRoom = null;
-        }
-        if (CheckRooms() == true) {
-            SpawnRoom();
-            // Subscribe to new door
-            LinkToDoor();
+        _gameManager.CurrentRoom++;
+        print(_gameManager.CurrentRoom);
+        if(_rooms.Count <= 0 ||_gameManager.CurrentRoom >= 9) {
+            // Start victory sequence
+            print("Victory");
+        } else {
+            // Switch Rooms
+            RefPlayer.SetActive(false);
+            // unload room
+            if (_currentRoom) {
+                Object.Destroy(_currentRoom);
+                _currentRoom = null;
+            }
+            if (CheckRooms() == true) {
+                SpawnRoom();
+                // Subscribe to new door
+                LinkToDoor();
+            }
         }
     }
     bool CheckRooms()
@@ -56,9 +65,10 @@ public class RoomHandler : MonoBehaviour
     void SpawnRoom()
     {
         // get random number
-        var WhichRoom = Random.Range(0, _rooms.Length);
+        var WhichRoom = Random.Range(0, _rooms.Count);
         // load random room from _rooms[WhichRoom]
         _currentRoom = Instantiate(_rooms[WhichRoom], _RoomOrigin);
+        _rooms.Remove(_rooms[WhichRoom]);
         // spawn player at correct position
         StartCoroutine(DelayedPlayerSpawn());
     }

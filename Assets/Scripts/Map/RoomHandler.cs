@@ -54,6 +54,7 @@ public class RoomHandler : MonoBehaviour
         if(IsFinalSwitch)
         {
             Debug.Log("Victory");
+            _gameManager.Victory.Invoke();
             return;
         }
         RefPlayer.SetActive(false);

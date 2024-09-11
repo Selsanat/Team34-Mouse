@@ -7,8 +7,17 @@ public class RoomHandler : MonoBehaviour
 {
     [SerializeField] bool SpawnRoomOnStart = false;
     [SerializeField] List<GameObject> _rooms;
+    [SerializeField] GameObject _IntroRoom;
+    [SerializeField] GameObject _FinalRoom;
     [SerializeField] Transform _RoomOrigin;
-    
+
+    enum RoomTypes
+    {
+        Intro,
+        Classic,
+        Final,
+    }
+
     // Refs (unchanging)
     private GameManager _gameManager;
     GameObject RefPlayer;
@@ -19,6 +28,10 @@ public class RoomHandler : MonoBehaviour
 
     // Parameters
     [SerializeField] int MaxAmountRoom = 9;
+
+    // Vars
+    bool IsFinalSwitch = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,26 +50,47 @@ public class RoomHandler : MonoBehaviour
 
     void SwitchRooms()
     {
+        // Ending Sequence, debug to prevent issues, the real ending sequence shouldn't need to start from here
+        if(IsFinalSwitch)
+        {
+            Debug.Log("Victory");
+            return;
+        }
+        RefPlayer.SetActive(false);
         _gameManager.CurrentRoom++;
         print(_gameManager.CurrentRoom);
-        if(_rooms.Count <= 0 ||_gameManager.CurrentRoom >= MaxAmountRoom) {
-            // Start victory sequence
-            print("Victory");
-        } else {
-            // Switch Rooms
-            RefPlayer.SetActive(false);
-            // unload room
-            if (_currentRoom) {
-                Object.Destroy(_currentRoom);
-                _currentRoom = null;
+        // unload room
+        if (_currentRoom)
+        {
+            Object.Destroy(_currentRoom);
+            _currentRoom = null;
+        }
+        //Final Room
+        if (_rooms.Count <= 0 ||_gameManager.CurrentRoom >= MaxAmountRoom) 
+        {
+            print("Final Room");
+            IsFinalSwitch = true;
+            SpawnRoom(RoomTypes.Final);
+
+        } else 
+        {
+            // Intro room
+            if (_gameManager.CurrentRoom == 1)
+            {
+                print("Intro");
+                SpawnRoom(RoomTypes.Intro);
+
             }
-            if (CheckRooms() == true) {
-                SpawnRoom();
-                // Subscribe to new door
-                LinkToDoor();
+            // Regular Room
+            else if (CheckRooms() == true)
+            {
+                SpawnRoom(RoomTypes.Classic);
             }
         }
+        // Subscribe to new door
+        LinkToDoor();
     }
+
     bool CheckRooms()
     {
         if ( _rooms == null )
@@ -68,14 +102,30 @@ public class RoomHandler : MonoBehaviour
         return true;
     }
 
-    void SpawnRoom()
+    void SpawnRoom(RoomTypes Type)
     {
-        // get random number
-        var WhichRoom = Random.Range(0, _rooms.Count);
-        // load random room from _rooms[WhichRoom]
-        _currentRoom = Instantiate(_rooms[WhichRoom], _RoomOrigin);
-        _rooms.Remove(_rooms[WhichRoom]);
-        // spawn player at correct position
+        switch (Type)
+        {
+            case RoomTypes.Intro:
+                _currentRoom = Instantiate(_IntroRoom, _RoomOrigin);
+                break;
+
+            case RoomTypes.Classic:
+                // get random number
+                var WhichRoom = Random.Range(0, _rooms.Count);
+                // load random room from _rooms[WhichRoom]
+                _currentRoom = Instantiate(_rooms[WhichRoom], _RoomOrigin);
+                _rooms.Remove(_rooms[WhichRoom]);
+                break;
+
+            case RoomTypes.Final:
+                _currentRoom = Instantiate(_FinalRoom, _RoomOrigin);
+                break;
+
+            default:
+                break;
+
+        }
         StartCoroutine(DelayedPlayerSpawn());
     }
 
@@ -120,8 +170,6 @@ public class RoomHandler : MonoBehaviour
         _refDoor = FindObjectOfType<RealDoorObject>();
         if (_refDoor)
         {
-            //_gameManager.switchLevel.RemoveListener(SwitchRooms);
-            //_gameManager.switchLevel.AddListener(SwitchRooms);
             return true;
         }
         print("Door not found !");

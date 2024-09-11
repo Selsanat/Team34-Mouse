@@ -385,6 +385,14 @@ PrefabInstance:
       value: Managers
       objectReference: {fileID: 0}
     - target: {fileID: 8378847286915767835, guid: 2824c403c19f42749954757c13431e56, type: 3}
+      propertyPath: _FinalRoom
+      value: 
+      objectReference: {fileID: 5878078354151961693, guid: bf7eb3030767c3a4e841936cf918b16c, type: 3}
+    - target: {fileID: 8378847286915767835, guid: 2824c403c19f42749954757c13431e56, type: 3}
+      propertyPath: _IntroRoom
+      value: 
+      objectReference: {fileID: 5878078354151961693, guid: 32d75edd78fed9d41a3d4aab7955eec4, type: 3}
+    - target: {fileID: 8378847286915767835, guid: 2824c403c19f42749954757c13431e56, type: 3}
       propertyPath: _RoomOrigin
       value: 
       objectReference: {fileID: 1105894490}

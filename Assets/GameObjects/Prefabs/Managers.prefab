@@ -48,6 +48,10 @@ MonoBehaviour:
   _rooms:
   - {fileID: 5878078354151961693, guid: bf7eb3030767c3a4e841936cf918b16c, type: 3}
   - {fileID: 5878078354151961693, guid: 32d75edd78fed9d41a3d4aab7955eec4, type: 3}
+  _IntroRoom: {fileID: 0}
+  _FinalRoom: {fileID: 0}
+  _RoomOrigin: {fileID: 0}
+  MaxAmountRoom: 9
 --- !u!1 &4100338643075750416
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,4 +135,23 @@ MonoBehaviour:
   switchLevel:
     m_PersistentCalls:
       m_Calls: []
+  Death:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8378847286915767835}
+        m_TargetAssemblyTypeName: RoomHandler, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Victory:
+    m_PersistentCalls:
+      m_Calls: []
   score: 0
+  CurrentRoom: 0

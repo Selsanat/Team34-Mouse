@@ -7,6 +7,7 @@ public class RoomHandler : MonoBehaviour
 {
     [SerializeField] bool SpawnRoomOnStart = false;
     [SerializeField] List<GameObject> _rooms;
+    List<GameObject> _Copyrooms;
     [SerializeField] GameObject _IntroRoom;
     [SerializeField] GameObject _FinalRoom;
     [SerializeField] Transform _RoomOrigin;
@@ -32,12 +33,15 @@ public class RoomHandler : MonoBehaviour
     // Vars
     bool IsFinalSwitch = false;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         RefPlayer = GameObject.FindGameObjectWithTag("Player");
         _gameManager = GameManager.instance;
         _gameManager.switchLevel.AddListener(SwitchRooms);
+        _Copyrooms = new List<GameObject>(_rooms);
 
         if (SpawnRoomOnStart)
         {
@@ -46,6 +50,15 @@ public class RoomHandler : MonoBehaviour
         {
             LinkToDoor();
         }
+    }
+
+    public void Restart()
+    {
+        print("Restart");
+        _rooms = new List<GameObject>(_Copyrooms);
+        IsFinalSwitch = false;
+        _gameManager.CurrentRoom = 0;
+        SwitchRooms();
     }
 
     void SwitchRooms()

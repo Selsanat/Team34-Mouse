@@ -6,13 +6,19 @@ using UnityEngine;
 public class RoomHandler : MonoBehaviour
 {
     [SerializeField] bool SpawnRoomOnStart = false;
-    private GameManager _gameManager;
     [SerializeField] List<GameObject> _rooms;
-    GameObject _currentRoom;
-    RealDoorObject _refDoor;
     [SerializeField] Transform _RoomOrigin;
+    
+    // Refs (unchanging)
+    private GameManager _gameManager;
     GameObject RefPlayer;
 
+    // Refs (changing)
+    GameObject _currentRoom;
+    RealDoorObject _refDoor;
+
+    // Parameters
+    [SerializeField] int MaxAmountRoom = 9;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +39,7 @@ public class RoomHandler : MonoBehaviour
     {
         _gameManager.CurrentRoom++;
         print(_gameManager.CurrentRoom);
-        if(_rooms.Count <= 0 ||_gameManager.CurrentRoom >= 9) {
+        if(_rooms.Count <= 0 ||_gameManager.CurrentRoom >= MaxAmountRoom) {
             // Start victory sequence
             print("Victory");
         } else {

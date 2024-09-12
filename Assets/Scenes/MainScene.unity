@@ -9343,11 +9343,6 @@ MonoBehaviour:
   - {fileID: 5878078354151961693, guid: c237095a43b5fe543b9ed8bf4f81c762, type: 3}
   - {fileID: 5878078354151961693, guid: 95ceeb451e872af42a69dc196d3e8424, type: 3}
   - {fileID: 5878078354151961693, guid: 86bbdfbe9271e7d4bbd7bf4f9aec7527, type: 3}
-  - {fileID: 5878078354151961693, guid: 21b31b41442edda45bcd4b4bb8fd7de4, type: 3}
-  - {fileID: 5878078354151961693, guid: 8068bf6cbc654ed4e9ec7a1a33fdd157, type: 3}
-  - {fileID: 5878078354151961693, guid: c2f23cc0122a96d4e89c2c5f618ca525, type: 3}
-  - {fileID: 5878078354151961693, guid: 46ad7f09f869d754f8ba129adbe043b1, type: 3}
-  - {fileID: 5878078354151961693, guid: acda8aa6587749f4f8ceee123f968212, type: 3}
   _IntroRoom: {fileID: 5878078354151961693, guid: f7a9490fb9d322a4188a9da430e02120, type: 3}
   _FinalRoom: {fileID: 5878078354151961693, guid: f7a9490fb9d322a4188a9da430e02120, type: 3}
   _RoomOrigin: {fileID: 1105894490}

@@ -18,17 +18,16 @@ public class FadeUI : MonoBehaviour
     [SerializeField] float DurationFlat = 3;
     [SerializeField] float FadingOutTime = 2;
     [SerializeField] float InitialDelay = 0;
-    private bool isFaded = false;
-
+    [SerializeField] private bool isFaded = false;
     public void Fade()
     {
         isFaded = !isFaded;
         if(isFaded)
         {
-            fadingCanvasGroup.DOFade(1, FadingOutTime);
+            fadingCanvasGroup.DOFade(1, FadingInTime);
         } else
         {
-            fadingCanvasGroup.DOFade(0, FadingInTime);
+            fadingCanvasGroup.DOFade(0, FadingOutTime);
         }
     }
 

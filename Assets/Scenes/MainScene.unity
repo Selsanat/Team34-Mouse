@@ -3031,9 +3031,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2c6e28b9b00464d952bc1c8267333a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hopHeight: 2
+  hopHeight: 3
   hopSpeed: 20
-  sprintModifier: 1.5
+  sprintModifier: 2
 --- !u!1 &322558723721207611
 GameObject:
   m_ObjectHideFlags: 0

@@ -3080,10 +3080,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnRoomOnStart: 1
   _rooms:
-  - {fileID: 5878078354151961693, guid: bf7eb3030767c3a4e841936cf918b16c, type: 3}
-  - {fileID: 5878078354151961693, guid: 32d75edd78fed9d41a3d4aab7955eec4, type: 3}
-  _IntroRoom: {fileID: 5878078354151961693, guid: 32d75edd78fed9d41a3d4aab7955eec4, type: 3}
-  _FinalRoom: {fileID: 5878078354151961693, guid: bf7eb3030767c3a4e841936cf918b16c, type: 3}
+  - {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
+  - {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
+  _IntroRoom: {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
+  _FinalRoom: {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
   _RoomOrigin: {fileID: 1105894490}
   MaxAmountRoom: 9
 --- !u!1660057539 &9223372036854775807

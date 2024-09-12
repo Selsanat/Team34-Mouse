@@ -174,9 +174,59 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ControllerInput"",
+            ""id"": ""c2b69894-04db-4499-bba4-05140c1d2219"",
+            ""actions"": [
+                {
+                    ""name"": ""Buttons"",
+                    ""type"": ""Button"",
+                    ""id"": ""b12b5cb0-718c-47b6-8d85-6b72d1ce8850"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e47cef84-8cc2-46d4-970d-99fe0e39e496"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""New control scheme"",
+                    ""action"": ""Buttons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""New control scheme"",
+            ""bindingGroup"": ""New control scheme"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // GroundMovement
         m_GroundMovement = asset.FindActionMap("GroundMovement", throwIfNotFound: true);
@@ -185,6 +235,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GroundMovement_MouseY = m_GroundMovement.FindAction("MouseY", throwIfNotFound: true);
         m_GroundMovement_PauseGame = m_GroundMovement.FindAction("PauseGame", throwIfNotFound: true);
         m_GroundMovement_Sprint = m_GroundMovement.FindAction("Sprint", throwIfNotFound: true);
+        // ControllerInput
+        m_ControllerInput = asset.FindActionMap("ControllerInput", throwIfNotFound: true);
+        m_ControllerInput_Buttons = m_ControllerInput.FindAction("Buttons", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -320,6 +373,61 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GroundMovementActions @GroundMovement => new GroundMovementActions(this);
+
+    // ControllerInput
+    private readonly InputActionMap m_ControllerInput;
+    private List<IControllerInputActions> m_ControllerInputActionsCallbackInterfaces = new List<IControllerInputActions>();
+    private readonly InputAction m_ControllerInput_Buttons;
+    public struct ControllerInputActions
+    {
+        private @PlayerControls m_Wrapper;
+        public ControllerInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Buttons => m_Wrapper.m_ControllerInput_Buttons;
+        public InputActionMap Get() { return m_Wrapper.m_ControllerInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ControllerInputActions set) { return set.Get(); }
+        public void AddCallbacks(IControllerInputActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ControllerInputActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ControllerInputActionsCallbackInterfaces.Add(instance);
+            @Buttons.started += instance.OnButtons;
+            @Buttons.performed += instance.OnButtons;
+            @Buttons.canceled += instance.OnButtons;
+        }
+
+        private void UnregisterCallbacks(IControllerInputActions instance)
+        {
+            @Buttons.started -= instance.OnButtons;
+            @Buttons.performed -= instance.OnButtons;
+            @Buttons.canceled -= instance.OnButtons;
+        }
+
+        public void RemoveCallbacks(IControllerInputActions instance)
+        {
+            if (m_Wrapper.m_ControllerInputActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IControllerInputActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ControllerInputActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ControllerInputActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ControllerInputActions @ControllerInput => new ControllerInputActions(this);
+    private int m_NewcontrolschemeSchemeIndex = -1;
+    public InputControlScheme NewcontrolschemeScheme
+    {
+        get
+        {
+            if (m_NewcontrolschemeSchemeIndex == -1) m_NewcontrolschemeSchemeIndex = asset.FindControlSchemeIndex("New control scheme");
+            return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
+        }
+    }
     public interface IGroundMovementActions
     {
         void OnHorizontalMovement(InputAction.CallbackContext context);
@@ -327,5 +435,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMouseY(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface IControllerInputActions
+    {
+        void OnButtons(InputAction.CallbackContext context);
     }
 }

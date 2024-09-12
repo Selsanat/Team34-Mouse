@@ -10,22 +10,24 @@ public class FadeUI : MonoBehaviour
     public UnityEvent TransitionFade = new UnityEvent();
     public UnityEvent EndFade = new UnityEvent();
 
+    GameManager gameManager;
+
 
     [SerializeField] private CanvasGroup fadingCanvasGroup;
     [SerializeField] float FadingInTime = 2;
     [SerializeField] float DurationFlat = 3;
     [SerializeField] float FadingOutTime = 2;
     [SerializeField] float InitialDelay = 0;
-    private bool isFaded = false;
+    [SerializeField] private bool isFaded = false;
     public void Fade()
     {
         isFaded = !isFaded;
         if(isFaded)
         {
-            fadingCanvasGroup.DOFade(1, FadingOutTime);
+            fadingCanvasGroup.DOFade(1, FadingInTime);
         } else
         {
-            fadingCanvasGroup.DOFade(0, FadingInTime);
+            fadingCanvasGroup.DOFade(0, FadingOutTime);
         }
     }
 
@@ -36,6 +38,7 @@ public class FadeUI : MonoBehaviour
 
     IEnumerator FadeRoutine()
     {
+        yield return new WaitForSeconds(3);
         if(InitialDelay > 0)
             yield return new WaitForSeconds(InitialDelay);
         StartFade.Invoke();

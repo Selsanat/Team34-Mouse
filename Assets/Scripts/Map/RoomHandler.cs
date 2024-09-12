@@ -91,7 +91,6 @@ public class RoomHandler : MonoBehaviour
             // Intro room
             if (_gameManager.CurrentRoom == 1)
             {
-                print("Intro");
                 SpawnRoom(RoomTypes.Intro);
 
             }

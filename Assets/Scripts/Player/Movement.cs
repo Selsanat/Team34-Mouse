@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     Vector3 horizontalVelocity;
     Vector3 verticalVelocity;
 
-    private void Awake()
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
         gameManager = GameManager.instance;
@@ -41,9 +41,9 @@ public class Movement : MonoBehaviour
             airTime += Time.deltaTime;
         }
         else { airTime = 0; }
-        print(airTime);
         if (controller.isGrounded && !grounded && airTime>0.5f)
         {
+            print(gameManager);
            gameManager.fellDown.Invoke();
         }
         grounded = controller.isGrounded;

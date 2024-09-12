@@ -998,6 +998,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3698490193850176150, guid: 6f00aae0ef1d49e4ea5a8d03db841edc, type: 3}
+      propertyPath: trap
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5988157416770747419, guid: 6f00aae0ef1d49e4ea5a8d03db841edc, type: 3}
       propertyPath: m_Name
       value: Trap (1)
@@ -1257,8 +1261,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18.485592, y: 0.7443665, z: 17.934017}
-  m_Center: {x: -0.030044079, y: -0.12781674, z: 0.67116547}
+  m_Size: {x: 18.485592, y: 0.8024266, z: 17.934017}
+  m_Center: {x: -0.030044556, y: -0.09878671, z: 0.67116547}
 --- !u!1001 &7088096984483156906
 PrefabInstance:
   m_ObjectHideFlags: 0

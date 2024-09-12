@@ -54,7 +54,7 @@ public class RoomHandler : MonoBehaviour
 
     public void Restart()
     {
-        print("Restart");
+        //print("Restart");
         _rooms = new List<GameObject>(_Copyrooms);
         IsFinalSwitch = false;
         _gameManager.CurrentRoom = 0;
@@ -70,9 +70,10 @@ public class RoomHandler : MonoBehaviour
             _gameManager.Victory.Invoke();
             return;
         }
-        RefPlayer.SetActive(false);
+        RefPlayer.GetComponent<CharacterController>().enabled = false;
+        //print("switching room !");
         _gameManager.CurrentRoom++;
-        print(_gameManager.CurrentRoom);
+        //print(_gameManager.CurrentRoom);
         // unload room
         if (_currentRoom)
         {
@@ -82,7 +83,7 @@ public class RoomHandler : MonoBehaviour
         //Final Room
         if (_rooms.Count <= 0 ||_gameManager.CurrentRoom >= MaxAmountRoom) 
         {
-            print("Final Room");
+            //print("Final Room");
             IsFinalSwitch = true;
             SpawnRoom(RoomTypes.Final);
 
@@ -109,7 +110,7 @@ public class RoomHandler : MonoBehaviour
     {
         if ( _rooms == null )
         {
-            print("No room loaded !");
+            //print("No room loaded !");
             Debug.LogWarning("No room loaded !");
             return false;
         }
@@ -145,7 +146,7 @@ public class RoomHandler : MonoBehaviour
 
     IEnumerator DelayedPlayerSpawn()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1);
         PlayerSpawn();
     }
 
@@ -156,13 +157,13 @@ public class RoomHandler : MonoBehaviour
         // find spawnPoint
         for (int i = 0; i < temp.childCount; i++)
         {
-            print(temp.GetChild(i).name);
+            //print(temp.GetChild(i).name);
             if (temp.GetChild(i).gameObject.tag == "Spawn")
             {
                 RefPlayer.transform.position = temp.GetChild(i).gameObject.transform.position;
-                print("found spawn point !");
+                //print("found spawn point !");
                 found = true;
-                RefPlayer.SetActive(true);
+                RefPlayer.GetComponent<CharacterController>().enabled = true;
                 return;
             }
         }
@@ -186,7 +187,7 @@ public class RoomHandler : MonoBehaviour
         {
             return true;
         }
-        print("Door not found !");
+        //print("Door not found !");
         Debug.LogWarning("Door not found !");
         return false;
     }

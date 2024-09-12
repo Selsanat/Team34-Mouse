@@ -16,7 +16,6 @@ public class RealDoorObject : MonoBehaviour
     {
         if(other.CompareTag("Player") && _enabled)
         {
-            print("Contact");
             _gameManager.switchLevel.Invoke();
             Destroy(gameObject.GetComponent<BoxCollider>());
         }

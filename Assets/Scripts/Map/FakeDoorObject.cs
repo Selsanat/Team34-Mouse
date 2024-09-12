@@ -15,7 +15,6 @@ public class FakeDoorObject : MonoBehaviour
     {
         if (other.CompareTag("Player") && _enabled)
         {
-            print("Wrong door");
             _gameManager.Death.Invoke();
             Destroy(gameObject.GetComponent<BoxCollider>());
         }

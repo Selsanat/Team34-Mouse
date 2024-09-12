@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     GameManager gameManager;
     bool sprinting;
     bool grounded = true;
+    float airTime = 0;
     [SerializeField] float speed = 5f;
     [SerializeField] float sprintSpeed = 10f;
     [SerializeField] float gravity = 5f;
@@ -35,8 +36,13 @@ public class Movement : MonoBehaviour
         verticalVelocity = Vector3.down * gravity;
         if(controller.enabled) controller.Move((horizontalVelocity + verticalVelocity) * Time.deltaTime);
 
-
-        if (controller.isGrounded && !grounded)
+        if (!grounded)
+        {
+            airTime += Time.deltaTime;
+        }
+        else { airTime = 0; }
+        print(airTime);
+        if (controller.isGrounded && !grounded && airTime>0.5f)
         {
            gameManager.fellDown.Invoke();
         }

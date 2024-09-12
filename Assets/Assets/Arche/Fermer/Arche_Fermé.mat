@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pillier
+  m_Name: "Arche_Ferm\xE9"
   m_Shader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,7 +29,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: e797c0d0a7c240a4ebaa32675e4d79f8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 22b5cb14997329d4e9c9e71fa0ef67ad, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -49,11 +49,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c8f05f93d4eaca7478b7d2f804d0d3bd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6cf2fa77cd714104cb32accc3bba85a9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: f76376937d7657a4d8ab2d6c87662106, type: 3}
+        m_Texture: {fileID: 2800000, guid: 344d1cf444812ba438f60ac8014b57c0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -61,11 +61,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: b66eb9bf99e9423438eacd033cb28d71, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95db29286edd4014db230cd66153db07, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: f1898eaa2f61e834db7f7692eb6c3e57, type: 3}
+        m_Texture: {fileID: 2800000, guid: 51e3786e641b0d3498bf6145cf90faa2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

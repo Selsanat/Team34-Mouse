@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,8 +19,13 @@ public class GameManager : MonoBehaviour
     public UnityEvent alertLevelChanged = new UnityEvent();
 
 
+    public UnityEvent switchLevel = new UnityEvent();
+    public UnityEvent Death = new UnityEvent();
+    public UnityEvent Victory = new UnityEvent();
+
     public int score = 0;
     public int alertLevel = 0;
+    public int CurrentRoom = 0;
     private void Awake()
     {
         if (instance == null)

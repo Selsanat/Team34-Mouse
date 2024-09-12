@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent resetAlertLevel = new UnityEvent();
 
     public UnityEvent switchLevel = new UnityEvent();
+    public UnityEvent ResolveLevel = new UnityEvent();
     public UnityEvent Death = new UnityEvent();
     public UnityEvent Victory = new UnityEvent();
 

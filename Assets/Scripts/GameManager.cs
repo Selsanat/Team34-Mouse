@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public UnityEvent scoreUpdated = new UnityEvent();
+
     public UnityEvent touchedBottle = new UnityEvent();
     public UnityEvent ateCheese = new UnityEvent();
     public UnityEvent hitTrap = new UnityEvent();
@@ -18,8 +19,13 @@ public class GameManager : MonoBehaviour
     public UnityEvent alertLevelChanged = new UnityEvent();
 
 
+    public UnityEvent switchLevel = new UnityEvent();
+    public UnityEvent Death = new UnityEvent();
+    public UnityEvent Victory = new UnityEvent();
+
     public int score = 0;
     public int alertLevel = 0;
+    public int CurrentRoom = 0;
     
     public UnityEvent switchLevel = new UnityEvent();
     public UnityEvent Death = new UnityEvent();

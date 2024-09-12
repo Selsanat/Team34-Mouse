@@ -27,12 +27,6 @@ public class GameManager : MonoBehaviour
     public int alertLevel = 0;
     public int CurrentRoom = 0;
     
-    public UnityEvent switchLevel = new UnityEvent();
-    public UnityEvent Death = new UnityEvent();
-    public UnityEvent Victory = new UnityEvent();
-    
-    public int CurrentRoom = 0;
-    
     private void Awake()
     {
         if (instance == null)

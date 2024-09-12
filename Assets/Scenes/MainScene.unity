@@ -7675,7 +7675,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391728089}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -8586,9 +8586,12 @@ MonoBehaviour:
   SpawnRoomOnStart: 1
   _rooms:
   - {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
-  - {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
-  _IntroRoom: {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
-  _FinalRoom: {fileID: 5878078354151961693, guid: fa274ce522606c345b894e3d09a53001, type: 3}
+  - {fileID: 5878078354151961693, guid: 1ea8b9b4c59637344ab1a4ce2da70add, type: 3}
+  - {fileID: 5878078354151961693, guid: dd70bd95a41393b4dbf9c1aa1c47b27e, type: 3}
+  - {fileID: 5878078354151961693, guid: 62d9db5098bdea04a9d7fc43e9c2a3ec, type: 3}
+  - {fileID: 5878078354151961693, guid: ee2197fce6cf99848a33e0ed6b9bcf70, type: 3}
+  _IntroRoom: {fileID: 5878078354151961693, guid: c2f23cc0122a96d4e89c2c5f618ca525, type: 3}
+  _FinalRoom: {fileID: 5878078354151961693, guid: c2f23cc0122a96d4e89c2c5f618ca525, type: 3}
   _RoomOrigin: {fileID: 1105894490}
   MaxAmountRoom: 9
 --- !u!1660057539 &9223372036854775807

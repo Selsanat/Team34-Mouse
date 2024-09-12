@@ -34,4 +34,12 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
+
+    public void ResetValues()
+    {
+        score = 0;
+        alertLevel = 0;
+        CurrentRoom = 0;
+        scoreUpdated.Invoke();
+    }
 }

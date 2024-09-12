@@ -17,7 +17,8 @@ public class Collectible : MonoBehaviour
         {
             gameManager.score += scoreGain;
             gameManager.scoreUpdated.Invoke();
-            Destroy(this.gameObject);
+            gameManager.ateCheese.Invoke();
+            Destroy(this.gameObject);   
         }
     }
 }

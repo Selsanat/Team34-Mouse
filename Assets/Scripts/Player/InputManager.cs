@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
     Movement movement;
     public void Awake()
     {
-        gameManager = GameManager.instance;
+
         controls = new PlayerControls();
         movement = this.GetComponent<Movement>();
         mouseLook = this.GetComponent<MouseLook>();
@@ -35,6 +35,10 @@ public class InputManager : MonoBehaviour
 
         controllerInput.North.performed += ctx => Triangle();
         controllerInput.West.performed += ctx => Circle();
+    }
+    public void Start()
+    {
+        gameManager = GameManager.instance;
     }
 
     private void Circle()

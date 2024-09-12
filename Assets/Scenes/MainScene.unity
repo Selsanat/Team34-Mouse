@@ -1588,7 +1588,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4792453, g: 0.4594634, b: 0.44398007, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2037,7 +2037,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 21.86, y: 10.09, z: 15.07}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -2116,7 +2116,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 3
     radius:
-      value: 5
+      value: 10
       mode: 0
       spread: 0
       speed:
@@ -2235,7 +2235,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6139,7 +6139,7 @@ Transform:
   m_GameObject: {fileID: 424179156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 5.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7074,7 +7074,7 @@ MonoBehaviour:
   sounds:
   - name: BackgroundMusic
     clips: []
-    clip: {fileID: 8300000, guid: 809f3b5725bc270429f0b4f3ae12557c, type: 3}
+    clip: {fileID: 8300000, guid: 2f28bf7f6b78e334c84771acce3c7eff, type: 3}
     volume: 1
     pitch: 1
     loop: 1

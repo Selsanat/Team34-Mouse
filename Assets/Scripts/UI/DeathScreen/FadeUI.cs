@@ -50,7 +50,6 @@ public class FadeUI : MonoBehaviour
         TransitionFade.Invoke();
         yield return new WaitForSeconds(FadingOutTime);
         EndFade.Invoke();
-        print("d");
         yield return null;
 
 

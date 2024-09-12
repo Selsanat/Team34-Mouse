@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
     public int alertLevel = 0;
+    public bool spawning = true;
     public int CurrentRoom = 0;
     
     private void Awake()

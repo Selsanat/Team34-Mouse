@@ -16,7 +16,7 @@ public class SpotLight : MonoBehaviour
             int alertLevel = gameManager.alertLevel;
             if (alertLevel <= 3)
             {
-                DOTween.To(() => light.range, x => light.range = x, 1f+alertLevel, 0.3f);
+                DOTween.To(() => light.range, x => light.range = x, 2f+alertLevel, 0.3f);
             }
             else if(alertLevel <= 6)
             {

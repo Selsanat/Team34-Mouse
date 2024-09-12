@@ -158,6 +158,7 @@ public class RoomHandler : MonoBehaviour
             //print(temp.GetChild(i).name);
             if (temp.GetChild(i).gameObject.tag == "Spawn")
             {
+                _gameManager.spawning = false;
                 RefPlayer.transform.position = temp.GetChild(i).gameObject.transform.position;
                 //print("found spawn point !");
                 found = true;

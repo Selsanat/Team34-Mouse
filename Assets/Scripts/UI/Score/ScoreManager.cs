@@ -12,9 +12,20 @@ public class ScoreManager : MonoBehaviour
         gameManager = GameManager.instance;
         UpdateScore();
         GameManager.instance.scoreUpdated.AddListener(UpdateScore);
+        gameManager.switchLevel.AddListener(() =>
+        {
+            StartCoroutine(addScore());
+        });
+    }
+
+    IEnumerator addScore()
+    {
+        yield return new WaitForSeconds(2);
+        gameManager.score += 2;
+        UpdateScore();
     }
     private void UpdateScore()
     {
-        scoreText.text = "Score: " + gameManager.score;
+        scoreText.text = ""+gameManager.score;
     }
 }

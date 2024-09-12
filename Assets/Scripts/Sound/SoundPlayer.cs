@@ -41,6 +41,7 @@ public class SoundPlayer : MonoBehaviour
         });
         gameManager.Death.AddListener(() =>
         {
+            gameManager.spawning = false;
             StartCoroutine(deathSoundsCoroutine());
         });
     }

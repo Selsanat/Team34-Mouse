@@ -35,7 +35,7 @@ public class LevelTransition : MonoBehaviour
     }
     IEnumerator OnResolveLevel()
     {
-        if (gameManager.CurrentRoom < 10)
+        if (gameManager.CurrentRoom-1 <10)
         {
             yield return new WaitForSeconds(3f);
             image.transform.DOScale(15, 1);

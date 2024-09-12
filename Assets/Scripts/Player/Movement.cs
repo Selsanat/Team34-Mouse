@@ -36,14 +36,13 @@ public class Movement : MonoBehaviour
         verticalVelocity = Vector3.down * gravity;
         if(controller.enabled) controller.Move((horizontalVelocity + verticalVelocity) * Time.deltaTime);
 
-        if (!grounded)
+        if (!grounded && !gameManager.spawning)
         {
             airTime += Time.deltaTime;
         }
         else { airTime = 0; }
-        if (controller.isGrounded && !grounded && airTime>0.5f)
+        if (controller.isGrounded && !grounded && airTime>0.25f)
         {
-            print(gameManager);
            gameManager.fellDown.Invoke();
         }
         grounded = controller.isGrounded;

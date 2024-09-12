@@ -11,7 +11,6 @@ public class RoomHandler : MonoBehaviour
     [SerializeField] GameObject _IntroRoom;
     [SerializeField] GameObject _FinalRoom;
     [SerializeField] Transform _RoomOrigin;
-
     enum RoomTypes
     {
         Intro,
@@ -92,7 +91,6 @@ public class RoomHandler : MonoBehaviour
             // Intro room
             if (_gameManager.CurrentRoom == 1)
             {
-                print("Intro");
                 SpawnRoom(RoomTypes.Intro);
 
             }
@@ -160,6 +158,7 @@ public class RoomHandler : MonoBehaviour
             //print(temp.GetChild(i).name);
             if (temp.GetChild(i).gameObject.tag == "Spawn")
             {
+                _gameManager.spawning = false;
                 RefPlayer.transform.position = temp.GetChild(i).gameObject.transform.position;
                 //print("found spawn point !");
                 found = true;

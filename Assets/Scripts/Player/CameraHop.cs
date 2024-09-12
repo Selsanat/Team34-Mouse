@@ -3,7 +3,6 @@ using NaughtyAttributes.Test;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class CameraHop : MonoBehaviour
 {
@@ -45,6 +44,10 @@ public class CameraHop : MonoBehaviour
         {
             time += Time.deltaTime * hopSpeed * (sprinting>0? velocityY * 2:velocityY);
             playerCamera.localPosition = new Vector3(pos.x, pos.y + Mathf.Sin(time) * Time.deltaTime * hopHeight, pos.z);
+        }
+        else
+        {
+            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, initialCameraPos, Time.deltaTime * 5);
         }
     }
 }

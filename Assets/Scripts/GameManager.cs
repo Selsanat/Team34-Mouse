@@ -17,14 +17,16 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent gamePaused = new UnityEvent();
     public UnityEvent alertLevelChanged = new UnityEvent();
-
+    public UnityEvent resetAlertLevel = new UnityEvent();
 
     public UnityEvent switchLevel = new UnityEvent();
+    public UnityEvent ResolveLevel = new UnityEvent();
     public UnityEvent Death = new UnityEvent();
     public UnityEvent Victory = new UnityEvent();
 
     public int score = 0;
     public int alertLevel = 0;
+    public bool spawning = true;
     public int CurrentRoom = 0;
     
     private void Awake()
@@ -33,5 +35,13 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    public void ResetValues()
+    {
+        score = 0;
+        alertLevel = 0;
+        CurrentRoom = 0;
+        scoreUpdated.Invoke();
     }
 }

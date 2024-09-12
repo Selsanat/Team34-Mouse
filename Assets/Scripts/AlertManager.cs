@@ -11,7 +11,7 @@ public class AlertManager : MonoBehaviour
         gameManager = GameManager.instance;
         gameManager.alertLevelChanged.AddListener(() =>
         {
-            transform.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Alert Level: " + gameManager.alertLevel;
+            transform.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "";
         });
         gameManager.hitTrap.AddListener(() =>
         {

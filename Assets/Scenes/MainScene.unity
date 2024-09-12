@@ -9274,7 +9274,7 @@ MonoBehaviour:
   _IntroRoom: {fileID: 5878078354151961693, guid: f7a9490fb9d322a4188a9da430e02120, type: 3}
   _FinalRoom: {fileID: 5878078354151961693, guid: f7a9490fb9d322a4188a9da430e02120, type: 3}
   _RoomOrigin: {fileID: 1105894490}
-  MaxAmountRoom: 2
+  MaxAmountRoom: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

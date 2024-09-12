@@ -47,10 +47,10 @@ public class SoundPlayer : MonoBehaviour
 
     IEnumerator deathSoundsCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.75f);
         soundManager.PlayClip("Trap");
         soundManager.PlayRandomClip("Squeak");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         soundManager.PlayClip("DeathScreen");
     }
     // Update is called once per frame

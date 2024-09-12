@@ -33,9 +33,10 @@ public class Movement : MonoBehaviour
     {
         horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * (sprinting ? sprintSpeed : speed);
         verticalVelocity = Vector3.down * gravity;
-        controller.Move((horizontalVelocity + verticalVelocity) * Time.deltaTime);
+        if(controller.enabled) controller.Move((horizontalVelocity + verticalVelocity) * Time.deltaTime);
 
-        if(controller.isGrounded && !grounded)
+
+        if (controller.isGrounded && !grounded)
         {
            gameManager.fellDown.Invoke();
         }

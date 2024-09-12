@@ -70,8 +70,8 @@ public class RoomHandler : MonoBehaviour
             _gameManager.Victory.Invoke();
             return;
         }
-        RefPlayer.SetActive(false);
-        print("switching room !");
+        RefPlayer.GetComponent<CharacterController>().enabled = false;
+        //print("switching room !");
         _gameManager.CurrentRoom++;
         //print(_gameManager.CurrentRoom);
         // unload room
@@ -146,8 +146,7 @@ public class RoomHandler : MonoBehaviour
 
     IEnumerator DelayedPlayerSpawn()
     {
-        //yield return new WaitForSeconds(1);
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1);
         PlayerSpawn();
     }
 
@@ -164,7 +163,7 @@ public class RoomHandler : MonoBehaviour
                 RefPlayer.transform.position = temp.GetChild(i).gameObject.transform.position;
                 //print("found spawn point !");
                 found = true;
-                RefPlayer.SetActive(true);
+                RefPlayer.GetComponent<CharacterController>().enabled = true;
                 return;
             }
         }

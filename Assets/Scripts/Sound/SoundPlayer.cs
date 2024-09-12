@@ -39,8 +39,20 @@ public class SoundPlayer : MonoBehaviour
             soundManager.PlayRandomClip("Squeak");
             soundManager.PlayClip("Fell");
         });
+        gameManager.Death.AddListener(() =>
+        {
+            StartCoroutine(deathSoundsCoroutine());
+        });
     }
 
+    IEnumerator deathSoundsCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        soundManager.PlayClip("Trap");
+        soundManager.PlayRandomClip("Squeak");
+        yield return new WaitForSeconds(1.5f);
+        soundManager.PlayClip("DeathScreen");
+    }
     // Update is called once per frame
     void Update()
     {

@@ -11,7 +11,6 @@ public class RoomHandler : MonoBehaviour
     [SerializeField] GameObject _IntroRoom;
     [SerializeField] GameObject _FinalRoom;
     [SerializeField] Transform _RoomOrigin;
-
     enum RoomTypes
     {
         Intro,
@@ -92,7 +91,6 @@ public class RoomHandler : MonoBehaviour
             // Intro room
             if (_gameManager.CurrentRoom == 1)
             {
-                print("Intro");
                 SpawnRoom(RoomTypes.Intro);
 
             }

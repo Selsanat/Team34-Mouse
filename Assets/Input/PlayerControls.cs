@@ -180,9 +180,36 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""c2b69894-04db-4499-bba4-05140c1d2219"",
             ""actions"": [
                 {
-                    ""name"": ""Buttons"",
+                    ""name"": ""South"",
                     ""type"": ""Button"",
                     ""id"": ""b12b5cb0-718c-47b6-8d85-6b72d1ce8850"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""East"",
+                    ""type"": ""Button"",
+                    ""id"": ""10ad9088-a2ba-4e6b-b960-309b5a4710e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""North"",
+                    ""type"": ""Button"",
+                    ""id"": ""644d4998-87b7-4c7c-9aca-d2cdb3c9215c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""West"",
+                    ""type"": ""Button"",
+                    ""id"": ""174eb73a-ab3f-4768-83a2-6c5849d57b45"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -193,11 +220,44 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e47cef84-8cc2-46d4-970d-99fe0e39e496"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""New control scheme"",
-                    ""action"": ""Buttons"",
+                    ""action"": ""South"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc83fb4f-069c-4e90-8ebc-524e114fd624"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""New control scheme"",
+                    ""action"": ""East"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00391e86-7fc4-4c99-88fc-2fa94d99781d"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""New control scheme"",
+                    ""action"": ""North"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d3fb13a-3ec8-43ba-885e-476fe1d68a7b"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""New control scheme"",
+                    ""action"": ""West"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -237,7 +297,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GroundMovement_Sprint = m_GroundMovement.FindAction("Sprint", throwIfNotFound: true);
         // ControllerInput
         m_ControllerInput = asset.FindActionMap("ControllerInput", throwIfNotFound: true);
-        m_ControllerInput_Buttons = m_ControllerInput.FindAction("Buttons", throwIfNotFound: true);
+        m_ControllerInput_South = m_ControllerInput.FindAction("South", throwIfNotFound: true);
+        m_ControllerInput_East = m_ControllerInput.FindAction("East", throwIfNotFound: true);
+        m_ControllerInput_North = m_ControllerInput.FindAction("North", throwIfNotFound: true);
+        m_ControllerInput_West = m_ControllerInput.FindAction("West", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -377,12 +440,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // ControllerInput
     private readonly InputActionMap m_ControllerInput;
     private List<IControllerInputActions> m_ControllerInputActionsCallbackInterfaces = new List<IControllerInputActions>();
-    private readonly InputAction m_ControllerInput_Buttons;
+    private readonly InputAction m_ControllerInput_South;
+    private readonly InputAction m_ControllerInput_East;
+    private readonly InputAction m_ControllerInput_North;
+    private readonly InputAction m_ControllerInput_West;
     public struct ControllerInputActions
     {
         private @PlayerControls m_Wrapper;
         public ControllerInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Buttons => m_Wrapper.m_ControllerInput_Buttons;
+        public InputAction @South => m_Wrapper.m_ControllerInput_South;
+        public InputAction @East => m_Wrapper.m_ControllerInput_East;
+        public InputAction @North => m_Wrapper.m_ControllerInput_North;
+        public InputAction @West => m_Wrapper.m_ControllerInput_West;
         public InputActionMap Get() { return m_Wrapper.m_ControllerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -392,16 +461,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ControllerInputActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ControllerInputActionsCallbackInterfaces.Add(instance);
-            @Buttons.started += instance.OnButtons;
-            @Buttons.performed += instance.OnButtons;
-            @Buttons.canceled += instance.OnButtons;
+            @South.started += instance.OnSouth;
+            @South.performed += instance.OnSouth;
+            @South.canceled += instance.OnSouth;
+            @East.started += instance.OnEast;
+            @East.performed += instance.OnEast;
+            @East.canceled += instance.OnEast;
+            @North.started += instance.OnNorth;
+            @North.performed += instance.OnNorth;
+            @North.canceled += instance.OnNorth;
+            @West.started += instance.OnWest;
+            @West.performed += instance.OnWest;
+            @West.canceled += instance.OnWest;
         }
 
         private void UnregisterCallbacks(IControllerInputActions instance)
         {
-            @Buttons.started -= instance.OnButtons;
-            @Buttons.performed -= instance.OnButtons;
-            @Buttons.canceled -= instance.OnButtons;
+            @South.started -= instance.OnSouth;
+            @South.performed -= instance.OnSouth;
+            @South.canceled -= instance.OnSouth;
+            @East.started -= instance.OnEast;
+            @East.performed -= instance.OnEast;
+            @East.canceled -= instance.OnEast;
+            @North.started -= instance.OnNorth;
+            @North.performed -= instance.OnNorth;
+            @North.canceled -= instance.OnNorth;
+            @West.started -= instance.OnWest;
+            @West.performed -= instance.OnWest;
+            @West.canceled -= instance.OnWest;
         }
 
         public void RemoveCallbacks(IControllerInputActions instance)
@@ -438,6 +525,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IControllerInputActions
     {
-        void OnButtons(InputAction.CallbackContext context);
+        void OnSouth(InputAction.CallbackContext context);
+        void OnEast(InputAction.CallbackContext context);
+        void OnNorth(InputAction.CallbackContext context);
+        void OnWest(InputAction.CallbackContext context);
     }
 }

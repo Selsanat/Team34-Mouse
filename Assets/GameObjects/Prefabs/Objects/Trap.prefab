@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3313075881712677197}
   - {fileID: 1704522087678178850}
+  - {fileID: 3313075881712677197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3698490193850176150
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bf3dcacc13eea4e9405ef18d063aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trap: 1
+  movingPart: {fileID: 6653958884137695125}
 --- !u!65 &3802882840289054106
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -144,6 +146,11 @@ PrefabInstance:
 --- !u!4 &3313075881712677197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 93fc7309a6c73cf4b81c03e80ced7202, type: 3}
+  m_PrefabInstance: {fileID: 3058174544026572454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6653958884137695125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8513859187771203891, guid: 93fc7309a6c73cf4b81c03e80ced7202, type: 3}
   m_PrefabInstance: {fileID: 3058174544026572454}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8171191941366615494

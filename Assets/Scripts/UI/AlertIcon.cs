@@ -27,6 +27,11 @@ public class AlertIcon : MonoBehaviour
 
     public void ResetIcons()
     {
+        StartCoroutine(ResetIconsDelayed());
+    }
+    IEnumerator ResetIconsDelayed()
+    {
+        yield return new WaitForSeconds(1f);
         tweenScale.Kill();
         tweenOpacity.Kill();
         _canvasGroup.DOFade(0, 1f);

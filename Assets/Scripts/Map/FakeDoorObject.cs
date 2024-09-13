@@ -15,6 +15,7 @@ public class FakeDoorObject : MonoBehaviour
     {
         if (other.CompareTag("Player") && _enabled)
         {
+            _gameManager.resetAlertLevel.Invoke();
             _gameManager.Death.Invoke();
             Destroy(gameObject.GetComponent<BoxCollider>());
         }

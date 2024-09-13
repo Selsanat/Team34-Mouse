@@ -42,7 +42,7 @@ public class CameraHop : MonoBehaviour
         Vector3 pos = playerCamera.localPosition;
         if (velocityY > 0)
         {
-            time += Time.deltaTime * hopSpeed * (sprinting>0? velocityY * 2:velocityY);
+            time += Time.deltaTime * hopSpeed * (sprinting>0? velocityY: velocityY * 2);
             playerCamera.localPosition = new Vector3(pos.x, pos.y + Mathf.Sin(time) * Time.deltaTime * hopHeight, pos.z);
         }
         else

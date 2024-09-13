@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * (sprinting ? sprintSpeed : speed);
+        horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * (sprinting ? speed : sprintSpeed);
         verticalVelocity = Vector3.down * gravity;
         if(controller.enabled) controller.Move((horizontalVelocity + verticalVelocity) * Time.deltaTime);
 

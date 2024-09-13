@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8ecb820-c495-488c-9dd2-ab995816e1c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,6 +179,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b699059f-8847-4fea-a31f-804d728f71a2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -295,6 +315,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GroundMovement_MouseY = m_GroundMovement.FindAction("MouseY", throwIfNotFound: true);
         m_GroundMovement_PauseGame = m_GroundMovement.FindAction("PauseGame", throwIfNotFound: true);
         m_GroundMovement_Sprint = m_GroundMovement.FindAction("Sprint", throwIfNotFound: true);
+        m_GroundMovement_Quit = m_GroundMovement.FindAction("Quit", throwIfNotFound: true);
         // ControllerInput
         m_ControllerInput = asset.FindActionMap("ControllerInput", throwIfNotFound: true);
         m_ControllerInput_South = m_ControllerInput.FindAction("South", throwIfNotFound: true);
@@ -367,6 +388,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GroundMovement_MouseY;
     private readonly InputAction m_GroundMovement_PauseGame;
     private readonly InputAction m_GroundMovement_Sprint;
+    private readonly InputAction m_GroundMovement_Quit;
     public struct GroundMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -376,6 +398,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @MouseY => m_Wrapper.m_GroundMovement_MouseY;
         public InputAction @PauseGame => m_Wrapper.m_GroundMovement_PauseGame;
         public InputAction @Sprint => m_Wrapper.m_GroundMovement_Sprint;
+        public InputAction @Quit => m_Wrapper.m_GroundMovement_Quit;
         public InputActionMap Get() { return m_Wrapper.m_GroundMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +423,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Quit.started += instance.OnQuit;
+            @Quit.performed += instance.OnQuit;
+            @Quit.canceled += instance.OnQuit;
         }
 
         private void UnregisterCallbacks(IGroundMovementActions instance)
@@ -419,6 +445,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Quit.started -= instance.OnQuit;
+            @Quit.performed -= instance.OnQuit;
+            @Quit.canceled -= instance.OnQuit;
         }
 
         public void RemoveCallbacks(IGroundMovementActions instance)
@@ -522,6 +551,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMouseY(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
     public interface IControllerInputActions
     {

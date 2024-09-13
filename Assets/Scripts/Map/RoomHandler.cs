@@ -62,12 +62,19 @@ public class RoomHandler : MonoBehaviour
 
     void SwitchRooms()
     {
+        StartCoroutine(SpawnRoonDelayed());
+    }
+
+    IEnumerator SpawnRoonDelayed()
+    {
+        print(_gameManager.CurrentRoom);
+        if(_gameManager.CurrentRoom != 0) yield return new WaitForSeconds(2);
         // Ending Sequence, debug to prevent issues, the real ending sequence shouldn't need to start from here
-        if(IsFinalSwitch)
+        if (IsFinalSwitch)
         {
             Debug.Log("Victory");
             _gameManager.Victory.Invoke();
-            return;
+            yield return null;
         }
         RefPlayer.GetComponent<CharacterController>().enabled = false;
         //print("switching room !");
@@ -80,13 +87,14 @@ public class RoomHandler : MonoBehaviour
             _currentRoom = null;
         }
         //Final Room
-        if (_rooms.Count <= 0 ||_gameManager.CurrentRoom >= MaxAmountRoom) 
+        if (_rooms.Count <= 0 || _gameManager.CurrentRoom >= MaxAmountRoom)
         {
             //print("Final Room");
             IsFinalSwitch = true;
             SpawnRoom(RoomTypes.Final);
 
-        } else 
+        }
+        else
         {
             // Intro room
             if (_gameManager.CurrentRoom == 1)
@@ -144,7 +152,8 @@ public class RoomHandler : MonoBehaviour
 
     IEnumerator DelayedPlayerSpawn()
     {
-        yield return new WaitForSeconds(1);
+        if (_gameManager.CurrentRoom != 0) yield return new WaitForSeconds(1);
+        else yield return null;
         PlayerSpawn();
     }
 

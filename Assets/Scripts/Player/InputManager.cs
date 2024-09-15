@@ -32,7 +32,7 @@ public class InputManager : MonoBehaviour
         groundMovement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
         groundMovement.PauseGame.performed += ctx => gameManager.gamePaused.Invoke();
         groundMovement.Sprint.performed += ctx => sprintInput = ctx.ReadValue<float>();
-
+        groundMovement.Quit.performed += ctx => QuitGame();
         controllerInput.North.performed += ctx => Triangle();
         controllerInput.West.performed += ctx => Circle();
     }
@@ -41,6 +41,10 @@ public class InputManager : MonoBehaviour
         gameManager = GameManager.instance;
     }
 
+    private void QuitGame()
+    {
+        Application.Quit();
+    }
     private void Circle()
     {
         gameManager.resetAlertLevel.Invoke();

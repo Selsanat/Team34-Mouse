@@ -67,7 +67,7 @@ public class RoomHandler : MonoBehaviour
 
     IEnumerator SpawnRoonDelayed()
     {
-        print(_gameManager.CurrentRoom);
+        print("Old room id: " + _gameManager.CurrentRoom);
         if(_gameManager.CurrentRoom != 0) yield return new WaitForSeconds(2);
         // Ending Sequence, debug to prevent issues, the real ending sequence shouldn't need to start from here
         if (IsFinalSwitch)
@@ -109,6 +109,7 @@ public class RoomHandler : MonoBehaviour
             }
         }
         // Subscribe to new door
+        print("New room id: " + _gameManager.CurrentRoom);
         LinkToDoor();
     }
 
